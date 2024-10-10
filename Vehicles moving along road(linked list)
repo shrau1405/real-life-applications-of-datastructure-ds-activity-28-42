@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define a structure for each vehicle (node)
+struct Vehicle {
+    int vehicleNumber;
+    struct Vehicle* next;
+};
+
+// Function to create a new vehicle node
+struct Vehicle* createVehicle(int number) {
+    struct Vehicle* newVehicle = (struct Vehicle*)malloc(sizeof(struct Vehicle));
+    newVehicle->vehicleNumber = number;
+    newVehicle->next = NULL;
+    return newVehicle;
+}
+
+// Function to display all vehicles on the road
+void displayVehicles(struct Vehicle* head) {
+    struct Vehicle* temp = head;
+    while (temp != NULL) {
+        printf("Vehicle Number: %d\n", temp->vehicleNumber);
+        temp = temp->next;
+    }
+}
+
+// Main function
+int main() {
+    // Creating vehicles
+    struct Vehicle* v1 = createVehicle(101);  // First vehicle
+    struct Vehicle* v2 = createVehicle(202);  // Second vehicle
+    struct Vehicle* v3 = createVehicle(303);  // Third vehicle
+
+    // Linking vehicles
+    v1->next = v2;
+    v2->next = v3;
+
+    // Display vehicles moving on the road
+    printf("Vehicles moving along the road:\n");
+    displayVehicles(v1);
+
+    return 0;
+}
